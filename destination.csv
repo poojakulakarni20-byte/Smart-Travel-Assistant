@@ -1,9 +1,30 @@
-name,category,interests,description,image_file,source_url
-Coorg,Nature,"nature,hills,coffee,relaxation","Green hills, coffee plantations and scenic landscapes.",images/coorg.jpg,https://karnatakatourism.org/en/destinations/coorg/
-Chikkamagaluru,Nature,"nature,hills,trekking,coffee","Mountain scenery and coffee-growing landscapes.",images/chikkamagaluru.jpg,https://www.incredibleindia.gov.in/en/karnataka
-Jog Falls,Nature,"nature,waterfall,photography","A major waterfall attraction with seasonal changes in water flow.",images/jog_falls.jpg,https://karnatakatourism.org/
-Kudremukh,Nature,"nature,hills,trekking,forest","Western Ghats scenery and trekking subject to current permissions.",images/kudremukh.jpg,https://karnatakatourism.org/
-Hampi,Heritage,"heritage,history,architecture,temples","Historic monuments and the remains of the Vijayanagara Empire.",images/hampi.jpg,https://whc.unesco.org/
-Mysuru,Culture,"culture,heritage,palace,food","Palace architecture, cultural attractions and local food.",images/mysuru.jpg,https://karnatakatourism.org/
-Badami,Heritage,"heritage,history,architecture,caves","Historic cave temples and architectural heritage.",images/badami.jpg,https://karnatakatourism.org/
-Gokarna,Beach,"beach,coast,relaxation,nature","Coastal scenery and beaches; check current sea conditions.",images/gokarna.jpg,https://karnatakatourism.org/
+Bengaluru,City,"city,gardens,shopping,food,culture","Karnataka's capital offers gardens, palaces, museums and a lively food scene.",images/bengaluru.jpg,https://karnatakatourism.org/en/destinations/bengaluru/
+Lalbagh Botanical Garden,Nature,"nature,gardens,plants,photography","Historic botanical garden known for its plant collections and green spaces.",images/lalbagh.jpg,https://karnatakatourism.org/en/attractions/
+Nandi Hills,Nature,"nature,hills,sunrise,photography","Popular hill destination known for scenic viewpoints and early morning visits.",images/nandi_hills.jpg,https://karnatakatourism.org/en/destinations/
+Agumbe,Nature,"nature,rainforest,photography,waterfalls","Rainforest destination in the Western Ghats known for misty landscapes and rich biodiversity.",images/agumbe.jpg,https://karnatakatourism.org/en/destinations/
+Sakleshpur,Nature,"nature,hills,coffee,trekking","Green hills and coffee-growing landscapes make this a scenic getaway.",images/sakleshpur.jpg,https://karnatakatourism.org/en/destinations/
+Kemmanagundi,Nature,"nature,hills,gardens,trekking","Hill retreat featuring mountain views and landscaped gardens.",images/kemmanagundi.jpg,https://karnatakatourism.org/en/destinations/
+Yana Caves,Nature,"nature,rock formations,forest,photography","Distinctive rock formations surrounded by forested scenery.",images/yana_caves.jpg,https://karnatakatourism.org/en/attractions/
+Dandeli,Wildlife,"nature,wildlife,forest,river,adventure","Forest destination known for river landscapes, birdlife and nature activities.",images/dandeli.jpg,https://karnatakatourism.org/en/destinations/uttara-kannada/
+Bandipur National Park,Wildlife,"nature,wildlife,forest,photography","Protected forest landscape known for wildlife and guided safari experiences.",images/bandipur.jpg,https://karnatakatourism.org/en/experiences/wildlife-safari/
+Nagarhole National Park,Wildlife,"nature,wildlife,forest,photography","Wildlife destination with forest habitats and guided safari opportunities.",images/nagarhole.jpg,https://karnatakatourism.org/en/experiences/wildlife-safari/
+Bhadra Wildlife Sanctuary,Wildlife,"nature,wildlife,birdwatching,forest","Western Ghats sanctuary known for forest habitats and birdlife.",images/bhadra.jpg,https://karnatakatourism.org/en/experiences/wildlife-safari/
+Mangaluru,Coastal,"beach,food,culture,temples","Coastal city known for local cuisine, religious landmarks and seaside attractions.",images/mangaluru.jpg,https://karnatakatourism.org/en/destinations/
+Udupi,Coastal,"beach,temples,food,culture","Coastal destination known for temple heritage, beaches and regional cuisine.",images/udupi.jpg,https://karnatakatourism.org/en/destinations/
+Murudeshwar,Coastal,"beach,temples,coast,photography","Seaside destination famous for its prominent Shiva statue and coastal views.",images/murudeshwar.jpg,https://karnatakatourism.org/en/attractions/
+Malpe Beach,Beach,"beach,coast,photography,relaxation","Popular coastal destination near Udupi with sandy shores and sea views.",images/malpe_beach.jpg,https://karnatakatourism.org/en/attractions/
+Maravanthe Beach,Beach,"beach,coast,photography,nature","Scenic coastal stretch known for the striking landscape between the sea and river.",images/maravanthe.jpg,https://karnatakatourism.org/en/attractions/
+St Mary's Island,Nature,"nature,island,geology,photography","Island destination known for its distinctive geological rock formations.",images/st_marys_island.jpg,https://karnatakatourism.org/en/attractions/
+Belur,Heritage,"heritage,history,architecture,temples","Historic temple town celebrated for intricate Hoysala architecture.",images/belur.jpg,https://karnatakatourism.org/en/destinations/
+Halebidu,Heritage,"heritage,history,architecture,sculpture","Historic destination known for detailed temple carvings and Hoysala heritage.",images/halebidu.jpg,https://karnatakatourism.org/en/destinations/
+Pattadakal,Heritage,"heritage,history,architecture,temples","UNESCO World Heritage Site featuring important Chalukyan temple architecture.",images/pattadakal.jpg,https://karnatakatourism.org/en/destinations/
+Aihole,Heritage,"heritage,history,architecture,temples","Historic site known for early temple architecture and Chalukyan heritage.",images/aihole.jpg,https://karnatakatourism.org/en/destinations/
+Chitradurga Fort,Heritage,"heritage,history,fort,photography","Historic hill fort known for its massive stone walls and defensive architecture.",images/chitradurga_fort.jpg,https://karnatakatourism.org/en/attractions/
+Bidar Fort,Heritage,"heritage,history,fort,architecture","Historic fort complex reflecting the region's medieval Deccan heritage.",images/bidar_fort.jpg,https://karnatakatourism.org/en/attractions/
+Srirangapatna,Heritage,"heritage,history,architecture,culture","Riverside historic town associated with the history of the Mysore Kingdom.",images/srirangapatna.jpg,https://karnatakatourism.org/en/destinations/
+Shravanabelagola,Heritage,"heritage,history,sculpture,spirituality","Important Jain heritage destination known for its monumental statue and hilltop setting.",images/shravanabelagola.jpg,https://karnatakatourism.org/en/experiences/heritage-history/
+Mysuru Palace,Culture,"culture,heritage,palace,architecture","Royal palace celebrated for its architecture and connection to Mysuru's royal history.",images/mysuru_palace.jpg,https://karnatakatourism.org/en/destinations/
+Bannerghatta Biological Park,Wildlife,"nature,wildlife,family,education","Wildlife and nature attraction near Bengaluru with visitor experiences subject to park rules.",images/bannerghatta.jpg,https://karnatakatourism.org/en/attractions/
+Cubbon Park,Nature,"nature,gardens,walking,relaxation","Green urban park in Bengaluru with tree-lined paths and open spaces.",images/cubbon_park.jpg,https://karnatakatourism.org/en/attractions/
+Ramanagara,Nature,"nature,hills,rock formations,photography","Rocky landscape near Bengaluru known for dramatic granite hills.",images/ramanagara.jpg,https://karnatakatourism.org/en/destinations/
+Talakadu,Heritage,"heritage,history,temples,river","Historic riverside town known for buried temples, local legends and archaeological heritage.",images/talakadu.jpg,https://karnatakatourism.org/en/experiences/heritage-history/
