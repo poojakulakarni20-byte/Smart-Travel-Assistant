@@ -1,0 +1,294 @@
+SMART TRAVEL ASSISTANT FOR EXPLORING KARNATAKA
+CUSTOM KNOWLEDGE BASE
+
+==================================================
+1. PURPOSE AND SCOPE
+==================================================
+
+The Smart Travel Assistant for Karnataka is a tourism chatbot designed to help travellers explore destinations across Karnataka, India.
+
+It provides information about tourist attractions, historical places, hill stations, waterfalls, beaches, local cuisine, culture, trip planning, travel budgets and general safety.
+
+The assistant helps users plan one-day, two-day and multi-day trips according to their interests, available time and approximate budget.
+
+The chatbot must provide responsible travel guidance. It must not claim to know live traffic conditions, current weather, hotel availability, ticket prices or confirmed bookings unless verified information from a reliable source is available.
+
+==================================================
+2. COORG (KODAGU)
+==================================================
+
+Coorg, also known as Kodagu, is a scenic hill region in Karnataka's Western Ghats. It is widely associated with coffee plantations, green landscapes, forested hills and Kodava culture.
+
+Popular attractions in the region include Abbey Falls, Raja's Seat and Mandalpatti Viewpoint.
+
+Visitors may enjoy scenic drives, nature photography, local food and plantation experiences. Travellers interested in outdoor activities should check current weather, road access and local restrictions before departure.
+
+Suggested travel interests:
+- Nature and landscapes
+- Coffee plantations
+- Photography
+- Cultural experiences
+- Relaxation
+
+The assistant must not guarantee that a particular road, viewpoint or trekking route is open without current verification.
+
+==================================================
+3. CHIKKAMAGALURU
+==================================================
+
+Chikkamagaluru is known for its mountain scenery, coffee-growing areas and green landscapes. It is a destination for travellers interested in nature, viewpoints and outdoor experiences.
+
+Travellers may research places such as Mullayanagiri and Baba Budangiri before planning their trip.
+
+Weather conditions can affect road access and outdoor activities. Some locations may have entry restrictions or require permission.
+
+Travel recommendations should consider the available time, starting location, transport arrangements and local conditions.
+
+==================================================
+4. KUDREMUKH
+==================================================
+
+Kudremukh is a Western Ghats region known for its mountain landscapes, biodiversity and trekking opportunities.
+
+Visitors interested in trekking should confirm whether access is permitted, whether advance booking is required and whether forest department rules apply.
+
+Travellers should follow official instructions, remain on permitted routes and avoid entering restricted forest areas.
+
+The assistant must never guarantee trekking permission or trail availability without verified current information.
+
+==================================================
+5. JOG FALLS
+==================================================
+
+Jog Falls is a major waterfall attraction in Karnataka associated with the Sharavathi River.
+
+The appearance and water flow of the falls vary depending on rainfall and seasonal conditions. Visitors may be particularly interested in scenic viewpoints and nature photography.
+
+Travellers should check local access information before visiting.
+
+Safety recommendations:
+- Follow signs and instructions at viewing areas.
+- Stay away from restricted edges.
+- Avoid entering dangerous water areas.
+- Check weather and road conditions.
+- Follow any temporary closures or safety restrictions.
+
+The assistant must not guarantee that a waterfall visit or swimming activity is safe.
+
+==================================================
+6. HAMPI
+==================================================
+
+Hampi is a historically significant destination associated with the Vijayanagara Empire. Its archaeological remains, temples and historic structures attract visitors interested in Indian history and architecture.
+
+Hampi is suitable for cultural tourism, heritage exploration, photography and educational visits.
+
+Visitors should respect historic monuments and follow site-specific rules.
+
+A trip plan may include several heritage locations, but the assistant should avoid scheduling too many attractions without considering travel time and opening hours.
+
+Opening times, entry fees and restrictions should be verified through official sources before travel.
+
+==================================================
+7. MYSURU
+==================================================
+
+Mysuru is known for its royal heritage, palace architecture, cultural traditions and regional cuisine.
+
+Mysuru Palace is one of the city's best-known attractions. Visitors may also research local markets, museums and other cultural locations.
+
+The city can suit travellers interested in history, architecture, food and family sightseeing.
+
+Festival dates, special events, illumination schedules and ticket prices may change. Travellers should confirm current details through official sources.
+
+The assistant should ask about trip duration and visitor interests when preparing a personalised itinerary.
+
+==================================================
+8. BADAMI, AIHOLE AND PATTADAKAL
+==================================================
+
+Badami, Aihole and Pattadakal are associated with Karnataka's historic temple architecture and cultural heritage.
+
+These destinations are suitable for travellers interested in ancient architecture, sculpture, archaeology and history.
+
+Visitors should research the locations in advance and consider travel distances when planning a route between them.
+
+The assistant should recommend checking official monument information for opening times, entry fees, visitor restrictions and local arrangements.
+
+==================================================
+9. GOKARNA AND COASTAL KARNATAKA
+==================================================
+
+Gokarna is a coastal destination known for its beaches and religious and cultural significance.
+
+Travellers may visit the region for coastal scenery, relaxation and local cultural experiences.
+
+Coastal conditions can change with weather, tides and local warnings. The assistant must never guarantee that swimming is safe.
+
+Visitors should follow lifeguard instructions, respect local restrictions and avoid entering the sea when conditions are unsafe.
+
+Travel plans should account for road journeys, accommodation arrangements and seasonal weather.
+
+==================================================
+10. KARNATAKA FOOD AND CULTURE
+==================================================
+
+Karnataka has a diverse food culture influenced by regional traditions and local ingredients.
+
+Examples of foods associated with Karnataka include:
+- Bisi Bele Bath
+- Ragi Mudde
+- Mysore Masala Dosa
+- Mysore Pak
+- Dharwad Peda
+- Neer Dosa
+- Jolada Rotti
+
+Food preferences vary across regions and individuals. The assistant may suggest regional dishes according to the traveller's interests.
+
+It must not make unsupported claims about restaurant hygiene or the exact ingredients of a dish.
+
+Travellers with allergies or dietary restrictions should confirm ingredients and preparation methods directly with the food provider.
+
+==================================================
+11. ITINERARY PLANNING
+==================================================
+
+The assistant can create travel itineraries based on:
+- Number of travel days
+- Preferred destinations
+- Starting location
+- Interests such as nature, heritage, beaches or food
+- Approximate budget
+- Preferred transport
+- Group size, when relevant
+
+For a one-day trip, the assistant should prioritise a small number of nearby attractions.
+
+For a two-day trip, it may suggest a practical route with time for sightseeing, meals and rest.
+
+For longer trips, it may group destinations by geographic region to reduce unnecessary travel.
+
+The assistant should explain that actual travel times depend on traffic, road conditions, weather and transport arrangements.
+
+It must not claim that a route is the fastest or best without reliable route information.
+
+==================================================
+12. BUDGET PLANNING
+==================================================
+
+Travel expenses may include:
+- Transportation
+- Accommodation
+- Food and drinks
+- Attraction entry fees
+- Guided tours
+- Parking
+- Other personal expenses
+
+An estimated budget should be based on stated assumptions about trip duration, group size, accommodation preferences and transport.
+
+The assistant must clearly label estimates as approximate and must not present invented prices as current quotations.
+
+Travellers should confirm prices and availability directly with transport providers, hotels and attraction authorities.
+
+==================================================
+13. WEATHER AND TRAVEL SAFETY
+==================================================
+
+Karnataka includes coastal areas, plains, forests and hill regions. Weather conditions differ across these regions and seasons.
+
+Heavy rain may affect roads, trekking routes, waterfalls and coastal activities.
+
+Before travelling, visitors should check official weather warnings and local travel advisories.
+
+General safety guidance:
+- Follow local authority instructions.
+- Respect protected-area rules.
+- Avoid restricted trekking routes.
+- Stay away from dangerous waterfall edges.
+- Follow beach safety warnings.
+- Carry suitable clothing for expected conditions.
+- Keep sufficient time for travel and rest.
+
+The assistant must not promise guaranteed safety.
+
+==================================================
+14. RESPONSIBLE AND SUSTAINABLE TOURISM
+==================================================
+
+Travellers should respect local communities, cultural traditions and natural environments.
+
+Recommended practices include:
+- Dispose of waste responsibly.
+- Avoid damaging monuments.
+- Follow wildlife-viewing rules.
+- Avoid disturbing animals.
+- Respect local customs.
+- Use authorised trails and visitor areas.
+- Follow restrictions in protected forests.
+- Reduce unnecessary plastic waste.
+
+The assistant should encourage visitors to preserve Karnataka's natural and cultural heritage.
+
+==================================================
+15. UNKNOWN INFORMATION AND RELIABILITY
+==================================================
+
+When information is missing or cannot be verified, the assistant should be transparent.
+
+It may respond:
+
+"I don't have verified information about that. Please check the official tourism website or the relevant local authority."
+
+The assistant must not invent:
+- Telephone numbers
+- Emergency contacts
+- Opening hours
+- Ticket prices
+- Bus or train schedules
+- Hotel availability
+- Booking confirmations
+- Current weather conditions
+
+Information that can change should be checked through appropriate official sources.
+
+==================================================
+16. PRIVACY AND DOMAIN LIMITS
+==================================================
+
+The chatbot is designed for Karnataka tourism and travel planning.
+
+It should focus on destinations, itineraries, local cuisine, cultural experiences, budgets and travel safety.
+
+It should not request passwords, one-time passwords, payment details or other unnecessary sensitive information.
+
+If a question is unrelated to tourism, the assistant should politely explain its purpose and guide the user back to travel-related assistance.
+
+==================================================
+17. RESEARCH SOURCES
+==================================================
+
+The following official or authoritative websites can be used to research and verify tourism information.
+
+Karnataka Tourism
+Website: https://karnatakatourism.org/
+
+Karnataka State Tourism Development Corporation
+Website: https://kstdc.co/
+
+Incredible India
+Website: https://www.incredibleindia.gov.in/
+
+UNESCO World Heritage Centre
+Website: https://whc.unesco.org/
+
+Research procedure:
+1. Identify the destination or topic.
+2. Search for relevant official information.
+3. Record the source page title.
+4. Record the source URL.
+5. Record the date the information was accessed.
+6. Verify changeable details before including them as current facts.
+
+The knowledge base should be reviewed and updated before project submission.
