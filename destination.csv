@@ -1,3 +1,5 @@
+```csv
+name,category,interests,description,image_file,source_url
 Bengaluru,City,"city,gardens,shopping,food,culture","Karnataka's capital offers gardens, palaces, museums and a lively food scene.",images/bengaluru.jpg,https://karnatakatourism.org/en/destinations/bengaluru/
 Lalbagh Botanical Garden,Nature,"nature,gardens,plants,photography","Historic botanical garden known for its plant collections and green spaces.",images/lalbagh.jpg,https://karnatakatourism.org/en/attractions/
 Nandi Hills,Nature,"nature,hills,sunrise,photography","Popular hill destination known for scenic viewpoints and early morning visits.",images/nandi_hills.jpg,https://karnatakatourism.org/en/destinations/
@@ -28,3 +30,4 @@ Bannerghatta Biological Park,Wildlife,"nature,wildlife,family,education","Wildli
 Cubbon Park,Nature,"nature,gardens,walking,relaxation","Green urban park in Bengaluru with tree-lined paths and open spaces.",images/cubbon_park.jpg,https://karnatakatourism.org/en/attractions/
 Ramanagara,Nature,"nature,hills,rock formations,photography","Rocky landscape near Bengaluru known for dramatic granite hills.",images/ramanagara.jpg,https://karnatakatourism.org/en/destinations/
 Talakadu,Heritage,"heritage,history,temples,river","Historic riverside town known for buried temples, local legends and archaeological heritage.",images/talakadu.jpg,https://karnatakatourism.org/en/experiences/heritage-history/
+```
