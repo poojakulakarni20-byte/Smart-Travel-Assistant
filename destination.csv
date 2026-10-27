@@ -1,0 +1,9 @@
+name,category,interests,description,image_file,source_url
+Coorg,Nature,"nature,hills,coffee,relaxation","Green hills, coffee plantations and scenic landscapes.",images/coorg.jpg,https://karnatakatourism.org/en/destinations/coorg/
+Chikkamagaluru,Nature,"nature,hills,trekking,coffee","Mountain scenery and coffee-growing landscapes.",images/chikkamagaluru.jpg,https://www.incredibleindia.gov.in/en/karnataka
+Jog Falls,Nature,"nature,waterfall,photography","A major waterfall attraction with seasonal changes in water flow.",images/jog_falls.jpg,https://karnatakatourism.org/
+Kudremukh,Nature,"nature,hills,trekking,forest","Western Ghats scenery and trekking subject to current permissions.",images/kudremukh.jpg,https://karnatakatourism.org/
+Hampi,Heritage,"heritage,history,architecture,temples","Historic monuments and the remains of the Vijayanagara Empire.",images/hampi.jpg,https://whc.unesco.org/
+Mysuru,Culture,"culture,heritage,palace,food","Palace architecture, cultural attractions and local food.",images/mysuru.jpg,https://karnatakatourism.org/
+Badami,Heritage,"heritage,history,architecture,caves","Historic cave temples and architectural heritage.",images/badami.jpg,https://karnatakatourism.org/
+Gokarna,Beach,"beach,coast,relaxation,nature","Coastal scenery and beaches; check current sea conditions.",images/gokarna.jpg,https://karnatakatourism.org/
