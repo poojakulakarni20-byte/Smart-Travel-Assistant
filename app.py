@@ -1,4 +1,4 @@
-```python
+
 import csv
 import os
 import re
@@ -360,4 +360,4 @@ Additional knowledge:
 
     with st.chat_message("assistant"):
         st.markdown(answer)
-```
+
