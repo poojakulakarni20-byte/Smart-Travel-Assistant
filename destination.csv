@@ -2,7 +2,7 @@ name,category,interests,description,image_file,source_url
 Bengaluru,City,"city,gardens,shopping,food,culture","Karnataka's capital offers gardens, palaces, museums and a lively food scene.",images/bengaluru.jpg,https://karnatakatourism.org/en/destinations/bengaluru/
 Lalbagh Botanical Garden,Nature,"nature,gardens,plants,photography","Historic botanical garden known for its plant collections and green spaces.",images/lalbagh.jpg,https://karnatakatourism.org/en/attractions/
 Nandi Hills,Nature,"nature,hills,sunrise,photography","Popular hill destination known for scenic viewpoints and early morning visits.",images/nandi_hills.jpg,https://karnatakatourism.org/en/destinations/
-Agumbe,Nature,"nature,rainforest,photography,waterfalls","Rainforest destination in the Western Ghats known for misty landscapes and rich biodiversity.",images/agumbe.jpg,https://karnatakatourism.org/en/destinations/
+Agumbe,Nature,"nature,rainforest,photography,waterfalls","Rainforest destination in the Western Ghats known for misty landscapes and biodiversity.",images/agumbe.jpg,https://karnatakatourism.org/en/destinations/
 Sakleshpur,Nature,"nature,hills,coffee,trekking","Green hills and coffee-growing landscapes make this a scenic getaway.",images/sakleshpur.jpg,https://karnatakatourism.org/en/destinations/
 Kemmanagundi,Nature,"nature,hills,gardens,trekking","Hill retreat featuring mountain views and landscaped gardens.",images/kemmanagundi.jpg,https://karnatakatourism.org/en/destinations/
 Yana Caves,Nature,"nature,rock formations,forest,photography","Distinctive rock formations surrounded by forested scenery.",images/yana_caves.jpg,https://karnatakatourism.org/en/attractions/
@@ -14,7 +14,7 @@ Mangaluru,Coastal,"beach,food,culture,temples","Coastal city known for local cui
 Udupi,Coastal,"beach,temples,food,culture","Coastal destination known for temple heritage, beaches and regional cuisine.",images/udupi.jpg,https://karnatakatourism.org/en/destinations/
 Murudeshwar,Coastal,"beach,temples,coast,photography","Seaside destination famous for its prominent Shiva statue and coastal views.",images/murudeshwar.jpg,https://karnatakatourism.org/en/attractions/
 Malpe Beach,Beach,"beach,coast,photography,relaxation","Popular coastal destination near Udupi with sandy shores and sea views.",images/malpe_beach.jpg,https://karnatakatourism.org/en/attractions/
-Maravanthe Beach,Beach,"beach,coast,photography,nature","Scenic coastal stretch known for the striking landscape between the sea and river.",images/maravanthe.jpg,https://karnatakatourism.org/en/attractions/
+Maravanthe Beach,Beach,"beach,coast,photography,nature","Scenic coastal stretch known for the landscape between the sea and river.",images/maravanthe.jpg,https://karnatakatourism.org/en/attractions/
 St Mary's Island,Nature,"nature,island,geology,photography","Island destination known for its distinctive geological rock formations.",images/st_marys_island.jpg,https://karnatakatourism.org/en/attractions/
 Belur,Heritage,"heritage,history,architecture,temples","Historic temple town celebrated for intricate Hoysala architecture.",images/belur.jpg,https://karnatakatourism.org/en/destinations/
 Halebidu,Heritage,"heritage,history,architecture,sculpture","Historic destination known for detailed temple carvings and Hoysala heritage.",images/halebidu.jpg,https://karnatakatourism.org/en/destinations/
