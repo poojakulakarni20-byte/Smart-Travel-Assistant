@@ -1,23 +1,26 @@
-
-import csv
 import os
 import re
+import csv
 from pathlib import Path
 
 import streamlit as st
 from dotenv import load_dotenv
-from openai import OpenAI
+
+try:
+    from openai import OpenAI
+except ImportError:
+    OpenAI = None
 
 import database
 
 
-# --------------------------------------------------
-# 1. PROJECT PATHS AND PAGE SETTINGS
-# --------------------------------------------------
+# =========================================================
+# 1. PROJECT SETTINGS
+# =========================================================
 
 BASE_DIR = Path(__file__).resolve().parent
-KNOWLEDGE_FILE = BASE_DIR / "knowledge.txt"
 DESTINATIONS_FILE = BASE_DIR / "destinations.csv"
+KNOWLEDGE_FILE = BASE_DIR / "knowledge.txt"
 
 st.set_page_config(
     page_title="Smart Travel Assistant Karnataka",
@@ -28,13 +31,10 @@ st.set_page_config(
 
 load_dotenv(BASE_DIR / ".env")
 
-# Initialize the database if database.py provides this function.
-database.initialize_database()
 
-
-# --------------------------------------------------
-# 2. LOAD API SETTINGS
-# --------------------------------------------------
+# =========================================================
+# 2. API CONFIGURATION
+# =========================================================
 
 def get_setting(name, default=""):
     value = os.getenv(name)
@@ -43,8 +43,8 @@ def get_setting(name, default=""):
         return value
 
     try:
-        secret_value = st.secrets.get(name, default)
-        return str(secret_value) if secret_value is not None else default
+        value = st.secrets.get(name, default)
+        return str(value) if value else default
     except Exception:
         return default
 
@@ -52,34 +52,78 @@ def get_setting(name, default=""):
 API_KEY = get_setting("OPENAI_API_KEY")
 MODEL = get_setting("OPENAI_MODEL", "gpt-4o-mini")
 
-client = OpenAI(api_key=API_KEY, timeout=25.0) if API_KEY else None
+client = None
+
+if API_KEY and OpenAI is not None:
+    try:
+        client = OpenAI(api_key=API_KEY, timeout=30.0)
+    except Exception:
+        client = None
 
 
-# --------------------------------------------------
-# 3. LOAD KNOWLEDGE FILE
-# --------------------------------------------------
+# =========================================================
+# 3. DATABASE INITIALIZATION
+# =========================================================
 
-def load_knowledge():
-    if not KNOWLEDGE_FILE.is_file():
-        return ""
-
-    return KNOWLEDGE_FILE.read_text(encoding="utf-8").strip()
-
-
-KNOWLEDGE = load_knowledge()
+try:
+    database.initialize_database()
+except Exception as exc:
+    st.warning(f"Database initialization notice: {exc}")
 
 
-# --------------------------------------------------
-# 4. NORMALIZE DESTINATION CATEGORIES
-# --------------------------------------------------
+# =========================================================
+# 4. IMAGE PATH HANDLING
+# =========================================================
 
-def canonical_category(value):
-    value = str(value or "").strip().casefold()
-    value = re.sub(r"\s+", " ", value)
+def find_image(image_file):
+    """
+    Search for an image in the project root and images folder.
 
-    aliases = {
+    Examples:
+        agumbe.jpg
+        images/agumbe.jpg
+    """
+
+    if not image_file:
+        return None
+
+    filename = str(image_file).strip().replace("\\", "/")
+
+    if not filename:
+        return None
+
+    relative_path = Path(filename)
+
+    # Only allow paths within the project directory.
+    if relative_path.is_absolute() or ".." in relative_path.parts:
+        return None
+
+    candidates = [
+        BASE_DIR / relative_path,
+        BASE_DIR / "images" / relative_path.name,
+    ]
+
+    for path in candidates:
+        try:
+            if path.is_file():
+                return str(path)
+        except OSError:
+            continue
+
+    return None
+
+
+# =========================================================
+# 5. LOAD DESTINATIONS
+# =========================================================
+
+def normalize_category(value):
+    value = re.sub(r"\s+", " ", str(value or "").strip()).casefold()
+
+    categories = {
         "nature": "Nature",
         "natural": "Nature",
+        "wildlife": "Nature",
         "heritage": "Heritage",
         "historical": "Heritage",
         "history": "Heritage",
@@ -87,277 +131,374 @@ def canonical_category(value):
         "beaches": "Beach",
         "coastal": "Coastal",
         "coast": "Coastal",
-        "wildlife": "Wildlife",
-        "adventure": "Adventure",
         "city": "City",
         "cities": "City",
-        "religious": "Religious",
-        "spiritual": "Religious",
+        "hill station": "Hill Station",
+        "hill stations": "Hill Station",
+        "hills": "Hill Station",
+        "adventure": "Adventure",
+        "religious": "Spiritual",
+        "spiritual": "Spiritual",
+        "temple": "Spiritual",
+        "temples": "Spiritual",
     }
 
-    return aliases.get(value, value.title() if value else "Other")
+    return categories.get(value, value.title() if value else "Other")
 
-
-# --------------------------------------------------
-# 5. LOAD DESTINATIONS FROM CSV
-# --------------------------------------------------
 
 def load_destinations():
     if not DESTINATIONS_FILE.is_file():
         st.error(
-            f"Could not find {DESTINATIONS_FILE.name}. "
+            "destinations.csv was not found. "
             "Place it in the same folder as app.py."
         )
         return []
 
+    destinations = []
+
     try:
         with DESTINATIONS_FILE.open(
-            "r", encoding="utf-8-sig", newline=""
+            "r",
+            encoding="utf-8-sig",
+            newline="",
         ) as file:
             reader = csv.DictReader(file)
-            destinations = []
+
+            if not reader.fieldnames:
+                st.error("destinations.csv is empty or has no header.")
+                return []
 
             for row in reader:
-                row = {
-                    str(key).strip(): str(value or "").strip()
-                    for key, value in row.items()
-                    if key is not None
-                }
-
-                if not row.get("name"):
+                if not row:
                     continue
 
-                row["category"] = canonical_category(
-                    row.get("category", "")
-                )
+                # Normalize column names.
+                cleaned = {
+                    str(key or "").strip().lower(): str(value or "").strip()
+                    for key, value in row.items()
+                }
 
-                destinations.append(row)
+                name = cleaned.get("name", "")
 
-            return destinations
+                if not name:
+                    continue
 
-    except (OSError, csv.Error) as error:
-        st.error(f"Could not read destinations.csv: {error}")
+                destinations.append({
+                    "name": name,
+                    "category": normalize_category(
+                        cleaned.get("category", "Other")
+                    ),
+                    "interests": cleaned.get("interests", ""),
+                    "description": cleaned.get("description", ""),
+                    "image_file": cleaned.get("image_file", ""),
+                    "source_url": cleaned.get("source_url", ""),
+                })
+
+    except Exception as exc:
+        st.error(f"Could not read destinations.csv: {exc}")
         return []
 
+    return destinations
 
-DESTINATIONS = load_destinations()
+
+@st.cache_data
+def cached_destinations():
+    return load_destinations()
 
 
-# --------------------------------------------------
-# 6. PAGE HEADER
-# --------------------------------------------------
+destinations = cached_destinations()
 
-st.title("🌿 Smart Travel Assistant for Karnataka")
+
+# =========================================================
+# 6. LOAD KNOWLEDGE FILE
+# =========================================================
+
+def load_knowledge():
+    if not KNOWLEDGE_FILE.is_file():
+        return ""
+
+    try:
+        return KNOWLEDGE_FILE.read_text(encoding="utf-8").strip()
+    except OSError:
+        return ""
+
+
+KNOWLEDGE = load_knowledge()
+
+
+# =========================================================
+# 7. PAGE HEADER
+# =========================================================
+
+st.title("🌿 Smart Travel Assistant – Karnataka")
 
 st.write(
-    "Discover Karnataka's beautiful nature spots, historic places, "
-    "beaches, wildlife destinations, and more."
+    "Discover Karnataka's beautiful destinations, "
+    "historic places, beaches, wildlife, and hill stations."
 )
 
+st.divider()
 
-# --------------------------------------------------
-# 7. SIDEBAR CATEGORY FILTER
-# --------------------------------------------------
 
-st.sidebar.header("Explore Karnataka")
+# =========================================================
+# 8. SIDEBAR FILTERS
+# =========================================================
 
-categories = sorted(
-    {
+with st.sidebar:
+    st.header("🧭 Explore Karnataka")
+
+    st.write("Choose a category to discover destinations.")
+
+    categories = sorted({
         destination["category"]
-        for destination in DESTINATIONS
-        if destination.get("category")
-    }
-)
+        for destination in destinations
+    })
 
-category_options = ["All"] + categories
+    selected_category = st.selectbox(
+        "Destination category",
+        ["All"] + categories,
+    )
 
-selected_category = st.sidebar.selectbox(
-    "Choose a category",
-    category_options,
-)
+    search_query = st.text_input(
+        "🔍 Search destinations",
+        placeholder="e.g. Mysuru, waterfalls, temples",
+    )
 
-search_text = st.sidebar.text_input(
-    "Search destinations",
-    placeholder="For example, Mysuru",
-)
+    st.divider()
+
+    st.subheader("About this project")
+    st.write(
+        "This application helps travelers explore destinations "
+        "across Karnataka."
+    )
 
 
-# --------------------------------------------------
-# 8. FILTER DESTINATIONS
-# --------------------------------------------------
+# =========================================================
+# 9. FILTER DESTINATIONS
+# =========================================================
 
-filtered_destinations = DESTINATIONS
+filtered_destinations = destinations.copy()
 
 if selected_category != "All":
     filtered_destinations = [
         destination
         for destination in filtered_destinations
-        if destination.get("category") == selected_category
+        if destination["category"] == selected_category
     ]
 
-if search_text.strip():
-    query = search_text.strip().casefold()
+if search_query.strip():
+    query = search_query.casefold()
 
     filtered_destinations = [
         destination
         for destination in filtered_destinations
-        if query in destination.get("name", "").casefold()
-        or query in destination.get("description", "").casefold()
-        or query in destination.get("interests", "").casefold()
+        if query in destination["name"].casefold()
+        or query in destination["description"].casefold()
+        or query in destination["category"].casefold()
+        or query in destination["interests"].casefold()
     ]
 
 
-# --------------------------------------------------
-# 9. DISPLAY DESTINATIONS AND IMAGES
-# --------------------------------------------------
+# =========================================================
+# 10. DISPLAY DESTINATION CARDS AND IMAGES
+# =========================================================
 
-st.subheader(f"{selected_category} Destinations")
+st.subheader("📍 Explore Destinations")
 
 if not filtered_destinations:
     st.info(
-        "No destinations found. Try another category or search term."
+        "No destinations matched your search. "
+        "Try another keyword or select All."
     )
 
 else:
-    columns_per_row = 3
+    st.write(f"Found {len(filtered_destinations)} destination(s).")
 
-    for start in range(0, len(filtered_destinations), columns_per_row):
-        row_destinations = filtered_destinations[
-            start:start + columns_per_row
+    number_of_columns = 3
+
+    for start in range(0, len(filtered_destinations), number_of_columns):
+        group = filtered_destinations[
+            start:start + number_of_columns
         ]
 
-        columns = st.columns(columns_per_row)
+        columns = st.columns(number_of_columns)
 
-        for column, destination in zip(columns, row_destinations):
+        for column, destination in zip(columns, group):
             with column:
-                st.markdown(f"### {destination.get('name', 'Destination')}")
+                with st.container(border=True):
+                    st.markdown(f"### {destination['name']}")
 
-                image_name = destination.get("image_file", "")
-                image_path = (BASE_DIR / image_name).resolve()
+                    st.caption(destination["category"])
 
-                # Prevent paths from pointing outside the project folder.
-                try:
-                    image_path.relative_to(BASE_DIR.resolve())
-                    safe_path = True
-                except ValueError:
-                    safe_path = False
-
-                if (
-                    safe_path
-                    and image_name
-                    and image_path.is_file()
-                ):
-                    st.image(
-                        str(image_path),
-                        use_container_width=True,
-                    )
-                else:
-                    st.caption("📷 Image not available for this destination.")
-
-                st.write(
-                    destination.get(
-                        "description",
-                        "Explore this destination in Karnataka.",
-                    )
-                )
-
-                if destination.get("interests"):
-                    st.caption(
-                        f"Interests: {destination['interests']}"
+                    image_path = find_image(
+                        destination["image_file"]
                     )
 
-                source_url = destination.get("source_url", "")
+                    if image_path:
+                        st.image(
+                            image_path,
+                            use_container_width=True,
+                        )
+                    else:
+                        st.info(
+                            "📷 Image not available yet."
+                        )
 
-                if source_url.startswith(("https://", "http://")):
-                    st.markdown(f"[Learn more]({source_url})")
+                    description = destination["description"]
+
+                    if description:
+                        st.write(description)
+                    else:
+                        st.write(
+                            "Discover this destination in Karnataka."
+                        )
+
+                    if destination["interests"]:
+                        st.caption(
+                            f"Interests: {destination['interests']}"
+                        )
+
+                    if destination["source_url"]:
+                        st.link_button(
+                            "Learn more",
+                            destination["source_url"],
+                            use_container_width=True,
+                        )
 
 
-# --------------------------------------------------
-# 10. TRAVEL CHATBOT
-# --------------------------------------------------
+# =========================================================
+# 11. AI TRAVEL CHATBOT
+# =========================================================
 
 st.divider()
 st.header("💬 Ask the Karnataka Travel Assistant")
 
 st.write(
-    "Ask questions about destinations, travel interests, or places "
-    "to explore in Karnataka."
+    "Ask about destinations, attractions, travel ideas, "
+    "or places to visit in Karnataka."
 )
 
 if "travel_messages" not in st.session_state:
-    st.session_state.travel_messages = []
+    st.session_state.travel_messages = [
+        {
+            "role": "assistant",
+            "content": (
+                "Hello! 🌿 I can help you explore Karnataka. "
+                "Ask me about nature, heritage, beaches, "
+                "hill stations, or travel planning."
+            ),
+        }
+    ]
+
 
 for message in st.session_state.travel_messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
-prompt = st.chat_input("Where would you like to explore in Karnataka?")
 
-if prompt:
-    st.session_state.travel_messages.append(
-        {"role": "user", "content": prompt}
-    )
+user_question = st.chat_input(
+    "Ask me about traveling in Karnataka..."
+)
+
+if user_question:
+    st.session_state.travel_messages.append({
+        "role": "user",
+        "content": user_question,
+    })
 
     with st.chat_message("user"):
-        st.markdown(prompt)
-
-    if client is None:
-        answer = (
-            "The travel chatbot needs an OpenAI API key. "
-            "Configure OPENAI_API_KEY in your local .env file or "
-            "in Streamlit Community Cloud Secrets. "
-            "You can still browse the destination cards above."
-        )
-
-    else:
-        destination_context = "\n".join(
-            f"- {item.get('name', '')} "
-            f"({item.get('category', '')}): "
-            f"{item.get('description', '')}"
-            for item in DESTINATIONS
-        )
-
-        system_prompt = f"""
-You are a helpful travel assistant focused on Karnataka, India.
-
-Answer clearly and politely. Recommend destinations based on the
-traveller's interests. Do not invent opening hours, ticket prices,
-transport schedules, or current conditions. Explain when information
-needs to be verified.
-
-Destination information:
-{destination_context}
-
-Additional knowledge:
-{KNOWLEDGE}
-"""
-
-        try:
-            response = client.chat.completions.create(
-                model=MODEL,
-                messages=[
-                    {"role": "system", "content": system_prompt},
-                    *st.session_state.travel_messages[-10:],
-                ],
-            )
-
-            answer = response.choices[0].message.content or (
-                "Sorry, I couldn't generate an answer. Please try again."
-            )
-
-        except Exception as error:
-            # Show a simple message to the user and log details in the terminal.
-            print(f"OpenAI request failed: {error}")
-            answer = (
-                "Sorry, I couldn't connect to the travel chatbot. "
-                "Please check your API key, internet connection, "
-                "and OpenAI account settings."
-            )
-
-    st.session_state.travel_messages.append(
-        {"role": "assistant", "content": answer}
-    )
+        st.markdown(user_question)
 
     with st.chat_message("assistant"):
-        st.markdown(answer)
+        if client is None:
+            answer = (
+                "The AI assistant needs an OpenAI API key to answer "
+                "questions. You can still browse and search the "
+                "destinations above. Configure OPENAI_API_KEY in "
+                "Streamlit Secrets to enable the chatbot."
+            )
 
+            st.info(answer)
+
+        else:
+            try:
+                destination_context = "\n".join(
+                    f"- {item['name']} ({item['category']}): "
+                    f"{item['description']}"
+                    for item in destinations
+                )
+
+                system_prompt = f"""
+You are a helpful travel assistant specializing in Karnataka, India.
+
+Give friendly, clear, practical travel suggestions.
+Use the destination information below when relevant.
+Do not invent exact prices, opening hours, or transport schedules.
+If you are unsure about current information, say that it should
+be checked before traveling.
+
+Available destinations:
+{destination_context}
+
+Additional project knowledge:
+{KNOWLEDGE[:12000]}
+"""
+
+                recent_messages = [
+                    {
+                        "role": message["role"],
+                        "content": message["content"],
+                    }
+                    for message in st.session_state.travel_messages[-10:]
+                ]
+
+                response = client.chat.completions.create(
+                    model=MODEL,
+                    messages=[
+                        {
+                            "role": "system",
+                            "content": system_prompt,
+                        },
+                        *recent_messages,
+                    ],
+                    max_tokens=700,
+                )
+
+                answer = response.choices[0].message.content
+
+                if not answer:
+                    answer = (
+                        "I couldn't generate an answer. "
+                        "Please try asking another question."
+                    )
+
+                st.markdown(answer)
+
+            except Exception as exc:
+                answer = (
+                    "Sorry, the AI assistant could not answer right now. "
+                    "Please check your API key and internet connection, "
+                    "then try again."
+                )
+
+                st.error(answer)
+
+                # Show a simple diagnostic without exposing secrets.
+                st.caption(f"Technical detail: {type(exc).__name__}")
+
+    st.session_state.travel_messages.append({
+        "role": "assistant",
+        "content": answer,
+    })
+
+
+# =========================================================
+# 12. FOOTER
+# =========================================================
+
+st.divider()
+
+st.caption(
+    "🌿 Smart Travel Assistant for Exploring Karnataka | "
+    "Built with Python and Streamlit"
+)
